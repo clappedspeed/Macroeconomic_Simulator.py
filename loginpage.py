@@ -39,25 +39,7 @@ class Login:
 
         Sign_up = Button(Frame_login,command=Signup, text="Sign Up:", font=("Arial", 18, "bold"), fg="#1d1d1d", bg="white").place(x=98, y=500)
         submit = Button(Frame_login,command=self.validation, text="login:", font=("Arial", 20, "bold"), fg="#1d1d1d", bg="white").place(x=98,y=420)
-       
-    def show_transition_page(self, user_id): # Sadly redundant right now
-        self.current_user_id = user_id
-        # Clear the current frame
-        for widget in self.root.winfo_children():
-            widget.destroy()
 
-        # Create a new frame
-        Frame_transition = Frame(self.root, bg="white")
-        Frame_transition.place(x=338, y=150, width=500, height=600)
-
-        title = Label(Frame_transition, text="Welcome to the Economics Simulator", font=("Arial", 36, "bold"),
-                      fg="#78877c", bg="white").place(x=30, y=50)
-
-        # Buttons for loading or starting a new simulation
-        load_button = Button(Frame_transition, text="Load Simulation", font=("Arial", 20, "bold"), fg="#1d1d1d",
-                             bg="white", command=self.load_simulation).place(x=150, y=200)
-        new_button = Button(Frame_transition, text="Start New Simulation", font=("Arial", 20, "bold"), fg="#1d1d1d",
-                            bg="white", command=self.start_new_simulation).place(x=150, y=300)
     def validation(self):
         username = self.username.get()
         password = self.password.get()
@@ -77,6 +59,8 @@ class Login:
                 if hashed_password == database_password:
                     user_id = row[0]  # Assuming row[0] is the user ID
                     self.load_main_menu(user_id)
+                    user_id = self.get_user_id(username)  # Retrieve user ID based on username
+                    # self.load_main_menu(user_id)  # Load main menu with user ID
                     return user_id
                 else:
                     messagebox.showerror("Error", "Incorrect username or password", parent=self.root)
@@ -85,11 +69,20 @@ class Login:
             else:
                 messagebox.showerror("Error", "User not found", parent=self.root)
                 return None
-                
+
+    def get_user_id(self, username):
+        """Fetch user ID based on username."""
+        cursor.execute("SELECT user_id FROM tblUserData WHERE username = ?", (username,))
+        result = cursor.fetchone()
+        return result[0] if result else None
+
     def load_main_menu(self, user_id):
-        # This method opens the simulation when called
+        """Load the main menu with the given user ID."""
         from mainwindow import EconomicSimulatorGraphs
-        self.main_menu = EconomicSimulatorGraphs(self.root, user_id)
+        self.root.destroy()  # Close the login window
+        main_root = Tk()  # Create a new Tk root for the main application
+        EconomicSimulatorGraphs(main_root, user_id)
+        main_root.mainloop()
 
 
 

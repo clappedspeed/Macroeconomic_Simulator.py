@@ -39,6 +39,8 @@ events_data = [
             {"effect_type": "GDP", "description": "Global health crisis", "magnitude": -0.05, "duration": 365},
             {"effect_type": "Inflation", "description": "Increased healthcare costs", "magnitude": 0.02, "duration": 365},
             {"effect_type": "Unemployment", "description": "Job losses due to economic downturn", "magnitude": 2.0, "duration": 365},
+            {"effect_type": "Balance of Payment", "description": "Impact on international trade and tourism", "magnitude": -0.01, "duration": 365},
+            {"effect_type": "Budget", "description": "Government spending on healthcare and economic stimulus", "magnitude": -0.03, "duration": 365},
         ],
         "impact": 0.05,
         "probability": 0.1,
@@ -49,7 +51,9 @@ events_data = [
         "outcomes": [
             {"effect_type": "GDP", "description": "Increased productivity", "magnitude": 0.03, "duration": 180},
             {"effect_type": "Inflation", "description": "Decreased costs of technology", "magnitude": -0.01, "duration": 180},
-            {"effect_type": "Unemployment", "description": "Shifts in employment due to automation", "magnitude": -1.5, "duration": 180},
+            {"effect_type": "Unemployment", "description": "Shifts in employment due to automation", "magnitude": 0.05, "duration": 180},
+            {"effect_type": "Balance of Payment", "description": "Impact on international competitiveness", "magnitude": 0.02, "duration": 180},
+            {"effect_type": "Budget", "description": "Government spending on technology and workforce training", "magnitude": -0.02, "duration": 180},
         ],
         "impact": 0.03,
         "probability": 0.15,
@@ -60,7 +64,9 @@ events_data = [
         "outcomes": [
             {"effect_type": "GDP", "description": "Economic contraction", "magnitude": -0.08, "duration": 365},
             {"effect_type": "Inflation", "description": "Increased uncertainty leading to inflation", "magnitude": 0.05, "duration": 365},
-            {"effect_type": "Unemployment", "description": "Higher job losses in financial sectors", "magnitude": 3.0, "duration": 365},
+            {"effect_type": "Unemployment", "description": "Higher job losses in financial sectors", "magnitude": 1.0, "duration": 365},
+            {"effect_type": "Balance of Payment", "description": "Impact on international capital flows", "magnitude": -0.02, "duration": 365},
+            {"effect_type": "Budget", "description": "Government spending on economic recovery and stimulus", "magnitude": -0.05, "duration": 365},
         ],
         "impact": 0.08,
         "probability": 0.05,
@@ -71,7 +77,9 @@ events_data = [
         "outcomes": [
             {"effect_type": "GDP", "description": "Economic losses due to destruction", "magnitude": -0.04, "duration": 180},
             {"effect_type": "Inflation", "description": "Increased costs of rebuilding", "magnitude": 0.03, "duration": 180},
-            {"effect_type": "Unemployment", "description": "Job losses in affected regions", "magnitude": 1.5, "duration": 180},
+            {"effect_type": "Unemployment", "description": "Job losses in affected regions", "magnitude": 1, "duration": 180},
+            {"effect_type": "Balance of Payment", "description": "Impact on international aid and assistance", "magnitude": 0.01, "duration": 180},
+            {"effect_type": "Budget", "description": "Government spending on disaster relief and recovery", "magnitude": -0.02, "duration": 180},
         ],
         "impact": 0.04,
         "probability": 0.1,
@@ -82,7 +90,9 @@ events_data = [
         "outcomes": [
             {"effect_type": "GDP", "description": "Economic expansion", "magnitude": 0.06, "duration": 365},
             {"effect_type": "Inflation", "description": "Potential inflation due to increased demand", "magnitude": 0.02, "duration": 365},
-            {"effect_type": "Unemployment", "description": "Job creation and lower unemployment", "magnitude": -1.0, "duration": 365},
+            {"effect_type": "Unemployment", "description": "Job creation and lower unemployment", "magnitude": -0.4, "duration": 365},
+            {"effect_type": "Balance of Payment", "description": "Impact on trade due to increased exports", "magnitude": 0.1, "duration": 365},
+            {"effect_type": "Budget", "description": "Changes in government revenue and debt due to stimulus", "magnitude": -0.01, "duration": 365},
         ],
         "impact": 0.06,
         "probability": 0.2,
@@ -94,6 +104,8 @@ events_data = [
             {"effect_type": "GDP", "description": "Increased international trade", "magnitude": 0.04, "duration": 180},
             {"effect_type": "Inflation", "description": "Potential decrease in import costs", "magnitude": -0.01, "duration": 180},
             {"effect_type": "Unemployment", "description": "Job creation in export-oriented industries", "magnitude": -0.5, "duration": 180},
+            {"effect_type": "Balance of Payment", "description": "Positive impact on trade balance", "magnitude": -0.1, "duration": 180},
+            {"effect_type": "Budget", "description": "Changes in government revenue from tariffs", "magnitude": 0.01, "duration": 180},
         ],
         "impact": 0.04,
         "probability": 0.15,
@@ -104,7 +116,9 @@ events_data = [
         "outcomes": [
             {"effect_type": "GDP", "description": "Impact on energy-dependent sectors", "magnitude": -0.02, "duration": 90},
             {"effect_type": "Inflation", "description": "Changes in fuel costs affecting prices", "magnitude": 0.03, "duration": 90},
-            {"effect_type": "Unemployment", "description": "Job losses in energy-related jobs", "magnitude": 1.0, "duration": 90},
+            {"effect_type": "Unemployment", "description": "Job losses in energy-related jobs", "magnitude": 0.05, "duration": 90},
+            {"effect_type": "Balance of Payment", "description": "Impact on import costs due to changes in energy prices", "magnitude": 0.01, "duration": 90},
+            {"effect_type": "Budget", "description": "Government subsidies or revenue changes in energy sector", "magnitude": -0.02, "duration": 90},
         ],
         "impact": 0.02,
         "probability": 0.1,
@@ -115,18 +129,22 @@ events_data = [
         "outcomes": [
             {"effect_type": "GDP", "description": "Higher consumer demand", "magnitude": 0.02, "duration": 180},
             {"effect_type": "Inflation", "description": "Potential inflation due to increased demand", "magnitude": 0.01, "duration": 180},
-            {"effect_type": "Unemployment", "description": "Job creation to meet increased demand", "magnitude": -0.5, "duration": 180},
+            {"effect_type": "Unemployment", "description": "Job creation to meet increased demand", "magnitude": -0.65, "duration": 180},
+            {"effect_type": "Balance of Payment", "description": "Impact on trade due to increased exports", "magnitude": 0.01, "duration": 180},
+            {"effect_type": "Budget", "description": "Government spending on infrastructure and services", "magnitude": -0.02, "duration": 180},
         ],
         "impact": 0.02,
         "probability": 0.15,
     },
     {
-        "name": "Reduction in Economic Condidence",
+        "name": "Reduction in Economic Confidence",
         "description": "Bearish animal spirits and speculations reduces consumer and business confidence.",
         "outcomes": [
             {"effect_type": "GDP", "description": "Investor caution leading to economic slowdown", "magnitude": -0.03, "duration": 120},
             {"effect_type": "Inflation", "description": "Increased uncertainty affecting prices", "magnitude": 0.02, "duration": 120},
-            {"effect_type": "Unemployment", "description": "Job losses due to decreased business investment", "magnitude": 1.5, "duration": 120},
+            {"effect_type": "Unemployment", "description": "Job losses due to decreased business investment", "magnitude": 0.1, "duration": 120},
+            {"effect_type": "Balance of Payment", "description": "Impact on international capital flows", "magnitude": -0.01, "duration": 120},
+            {"effect_type": "Budget", "description": "Changes in government spending due to economic challenges", "magnitude": -0.02, "duration": 120},
         ],
         "impact": 0.03,
         "probability": 0.1,
@@ -148,7 +166,9 @@ events_data = [
         "outcomes": [
             {"effect_type": "GDP", "description": "Boost in exports due to favorable exchange rates", "magnitude": 0.02, "duration": 90},
             {"effect_type": "Inflation", "description": "Increased costs of imported goods", "magnitude": 0.01, "duration": 90},
-            {"effect_type": "Unemployment", "description": "Potential job losses in import-dependent sectors", "magnitude": 0.5, "duration": 90},
+            {"effect_type": "Unemployment", "description": "Potential job losses in import-dependent sectors", "magnitude": 0.05, "duration": 90},
+            {"effect_type": "Balance of Payment", "description": "Impact on trade balance and capital flows", "magnitude": 0.01, "duration": 90},
+            {"effect_type": "Budget", "description": "Changes in government revenue from exchange rate effects", "magnitude": 0.02, "duration": 90},
         ],
         "impact": 0.02,
         "probability": 0.12,
@@ -159,7 +179,9 @@ events_data = [
         "outcomes": [
             {"effect_type": "Health", "description": "Improved health outcomes", "magnitude": 0.04, "duration": 180},
             {"effect_type": "Inflation", "description": "Increased costs of advanced healthcare", "magnitude": 0.02, "duration": 180},
-            {"effect_type": "Unemployment", "description": "Job creation in healthcare and technology sectors", "magnitude": -0.8, "duration": 180},
+            {"effect_type": "Unemployment", "description": "Job creation in healthcare and technology sectors", "magnitude": -0.3, "duration": 180},
+            {"effect_type": "Balance of Payment", "description": "Impact on international medical tourism", "magnitude": 0.01, "duration": 180},
+            {"effect_type": "Budget", "description": "Government spending on healthcare innovation", "magnitude": -0.01, "duration": 180},
         ],
         "impact": 0.04,
         "probability": 0.15,
@@ -170,7 +192,9 @@ events_data = [
         "outcomes": [
             {"effect_type": "GDP", "description": "Increased international trade", "magnitude": 0.03, "duration": 180},
             {"effect_type": "Inflation", "description": "Potential decrease in import costs", "magnitude": -0.02, "duration": 180},
-            {"effect_type": "Unemployment", "description": "Job creation in export-oriented industries", "magnitude": -0.7, "duration": 180},
+            {"effect_type": "Unemployment", "description": "Job creation in export-oriented industries", "magnitude": -0.4, "duration": 180},
+            {"effect_type": "Balance of Payment", "description": "Impact on trade balance and capital flows", "magnitude": 0.02, "duration": 180},
+            {"effect_type": "Budget", "description": "Changes in government revenue from increased trade", "magnitude": 0.01, "duration": 180},
         ],
         "impact": 0.03,
         "probability": 0.18,
@@ -181,7 +205,9 @@ events_data = [
         "outcomes": [
             {"effect_type": "GDP", "description": "Increased productivity due to skilled workforce", "magnitude": 0.02, "duration": 240},
             {"effect_type": "Inflation", "description": "Potential decrease in training costs for businesses", "magnitude": -0.01, "duration": 240},
-            {"effect_type": "Unemployment", "description": "Job creation due to skilled workforce", "magnitude": -1.0, "duration": 240},
+            {"effect_type": "Unemployment", "description": "Job creation due to skilled workforce", "magnitude": -0.3, "duration": 2000},
+            {"effect_type": "Balance of Payment", "description": "Impact on international competitiveness due to skilled workforce", "magnitude": 0.02, "duration": 240},
+            {"effect_type": "Budget", "description": "Government spending on education reform and workforce development", "magnitude": -0.02, "duration": 240},
         ],
         "impact": 0.02,
         "probability": 0.15,
@@ -192,7 +218,9 @@ events_data = [
         "outcomes": [
             {"effect_type": "GDP", "description": "Economic slowdown due to reduced trade", "magnitude": -0.03, "duration": 120},
             {"effect_type": "Inflation", "description": "Increased costs of imported goods", "magnitude": 0.02, "duration": 120},
-            {"effect_type": "Unemployment", "description": "Job losses in export-oriented industries", "magnitude": 1.0, "duration": 120},
+            {"effect_type": "Unemployment", "description": "Job losses in export-oriented industries", "magnitude": 0.15, "duration": 120},
+            {"effect_type": "Balance of Payment", "description": "Impact on trade balance and capital flows", "magnitude": -0.01, "duration": 120},
+            {"effect_type": "Budget", "description": "Government interventions to mitigate economic impact", "magnitude": -0.02, "duration": 120},
         ],
         "impact": 0.03,
         "probability": 0.12,
@@ -203,18 +231,19 @@ events_data = [
         "outcomes": [
             {"effect_type": "GDP", "description": "Productivity gains through automation", "magnitude": 0.01, "duration": 180},
             {"effect_type": "Inflation", "description": "Decreased labor costs affecting prices", "magnitude": -0.01, "duration": 180},
-            {"effect_type": "Unemployment", "description": "Job losses in manual labor sectors", "magnitude": 0.5, "duration": 180},
+            {"effect_type": "Unemployment", "description": "Job losses in manual labor sectors", "magnitude": 0.1, "duration": 180},
+            {"effect_type": "Balance of Payment", "description": "Impact on international competitiveness in automated industries", "magnitude": 0.01, "duration": 180},
+            {"effect_type": "Budget", "description": "Government spending on retraining and employment programs", "magnitude": -0.01, "duration": 180},
         ],
         "impact": 0.01,
         "probability": 0.2,
     },
 ]
 
-# Making the events_data list into an event objecy
 events = [Event(event["name"], event["description"], [Outcome(**outcome) for outcome in event["outcomes"]],
                 event["impact"], event["probability"]) for event in events_data]
 
-# This is a placeholder class for testing purposes
+
 class EconomicIndicator:
     def __init__(self, gdp, inflation, unemployment, balance_of_payment, budget):
         self.gdp = gdp
@@ -240,23 +269,8 @@ class EconomicIndicator:
         return f"GDP: {self.gdp}, Inflation: {self.inflation}%, Unemployment: {self.unemployment}%, " \
                f"Balance of Payment: {self.balance_of_payment}, Budget: {self.budget}"
 
-# Test 
-economic_indicator = EconomicIndicator(1000, 2, 5, 500, 300)
-print("Initial Economic Indicators:")
-print(economic_indicator)
 
 
-
-# Test all events on command line (for testing)
-for event in events:
-    if event.should_occur():
-        print(f"\nApplying Event: {event.name}")
-        print(f"Event Description: {event.description}")
-        event.apply_event(economic_indicator)
-        print("Updated Economic Indicators:")
-        print(economic_indicator)
-    else:
-        print(f"\nEvent {event.name} did not occur.")
 
 
 

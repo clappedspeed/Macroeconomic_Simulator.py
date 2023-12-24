@@ -240,6 +240,8 @@ class EconomicSimulatorGraphs:
             # Save economic data to the database
             self.save_simulation_state_to_database()
 
+
+
         # Check if the simulation is paused
         if not self.paused:
             # Schedule the next update after 750 milliseconds (monthly)
@@ -287,6 +289,16 @@ class EconomicSimulatorGraphs:
         delay_time = random.uniform(10, 60) * 1000  # Convert seconds to milliseconds
         self.root.after(int(delay_time), lambda: self.apply_events(event))
 
+    def detect_economic_downturn(self):
+        # Check if GDP has been decreasing for 6 months or longer
+        if len(self.gdp_data) >= 6:
+            recent_gdp_data = self.gdp_data[-6:]  # Get the last 6 months of GDP data
+            if all(gdp1 >= gdp2 for gdp1, gdp2 in zip(recent_gdp_data, recent_gdp_data[1:])):
+                print("recession")
+                return True  # Economic downturn detected
+        return False
+
+
     def apply_events(self, event):
         # Display event information on the frame for 5 seconds
 
@@ -295,35 +307,37 @@ class EconomicSimulatorGraphs:
 
         # Clear event text and lower the frame after 5 seconds
         self.root.after(5000, lambda: [self.event_label.config(text=""), self.event_frame.lower()])
+        if event.name == "Recession":
+            self.show_event(event.name, "Economic Downturn", "The economy is experiencing a recession.")
+        else:
+            # Apply the outcome to the corresponding economic indicator
+            for outcome in event.outcomes:  # Assuming the attribute is named 'outcomes'
+                if outcome.effect_type == "GDP":
+                    print(f"Old GDP: {self.gdp}")
+                    self.gdp *= (1 + outcome.magnitude)
+                    print(f"new GDP: {self.gdp}")
+                elif outcome.effect_type == "Inflation":
+                    print(f"old inflation: {self.inflation}")
+                    self.inflation += outcome.magnitude
+                    print(f"new inflation: {self.inflation}")
+                elif outcome.effect_type == "Unemployment":
+                    print(f"old unemployment: {self.unemployment}")
+                    self.unemployment += outcome.magnitude
+                    print(f"new unemployment: {self.unemployment}")
+                elif outcome.effect_type == "Balance of Payment":
+                    print(f"old balance of payment: {self.balance_of_payment}")
+                    self.balance_of_payment += outcome.magnitude
+                    print(f"new balance of payment: {self.balance_of_payment}")
+                elif outcome.effect_type == "Budget":
+                    print(f"old budget: {self.budget}")
+                    self.budget += outcome.magnitude
+                    print(f"new budget: {self.balance_of_payment}")
 
-        # Apply the outcome to the corresponding economic indicator
-        for outcome in event.outcomes:  # Assuming the attribute is named 'outcomes'
-            if outcome.effect_type == "GDP":
-                print(f"Old GDP: {self.gdp}")
-                self.gdp *= (1 + outcome.magnitude)
-                print(f"new GDP: {self.gdp}")
-            elif outcome.effect_type == "Inflation":
-                print(f"old inflation: {self.inflation}")
-                self.inflation += outcome.magnitude
-                print(f"new inflation: {self.inflation}")
-            elif outcome.effect_type == "Unemployment":
-                print(f"old unemployment: {self.unemployment}")
-                self.unemployment += outcome.magnitude
-                print(f"new unemployment: {self.unemployment}")
-            elif outcome.effect_type == "Balance of Payment":
-                print(f"old balance of payment: {self.balance_of_payment}")
-                self.balance_of_payment += outcome.magnitude
-                print(f"new balance of payment: {self.balance_of_payment}")
-            elif outcome.effect_type == "Budget":
-                print(f"old budget: {self.budget}")
-                self.budget += outcome.magnitude
-                print(f"new budget: {self.balance_of_payment}")
-
-        self.show_event(event.name, event.description, self.current_date)
-
+                self.show_event(event.name, event.description, self.current_date)
 
         # Schedule the next event
         self.schedule_event()
+
 
     def add_policy_tab(self):
         # Create and set up the Combobox for policy selection
@@ -379,11 +393,11 @@ class EconomicSimulatorGraphs:
                     print(f"new unemployment: {self.unemployment}")
                 elif effect_type == "Balance of Payment":
                     print(f"old balance of payment: {self.balance_of_payment}")
-                    self.balance_of_payment += outcome["magnitude"]
+                    self.balance_of_payment *= (1 + outcome["magnitude"])
                     print(f"new balance of payment: {self.balance_of_payment}")
                 elif effect_type == "Budget":
                     print(f"old budget: {self.budget}")
-                    self.budget += outcome["magnitude"]
+                    self.budget *= (1+ outcome["magnitude"])
                     print(f"new budget: {self.balance_of_payment}")
 
 
@@ -393,6 +407,7 @@ class EconomicSimulatorGraphs:
         # Display event with date in newspaper style
         event_text = f"{date}\n\n{title}\n\n{description}"
         self.event_label.config(text=event_text)
+
 
     def save_simulation_state_to_database(self):
         try:
@@ -468,8 +483,8 @@ class EconomicSimulatorGraphs:
 
 def main():
     root = tk.Tk()
-    user_id = 12345 # Placeholder for now
+    user_id = 12345
     app = EconomicSimulatorGraphs(root, user_id)
     root.mainloop()
-
-main()
+if __name__ == "__main__":
+    main()

@@ -13,37 +13,11 @@ def setup_database():
     CREATE TABLE IF NOT EXISTS tblUserData (
         user_id INTEGER PRIMARY KEY,
         username VARCHAR(255) NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        last_login INTEGER DEFAULT NULL,
-        current_simulation_state VARCHAR(65535) DEFAULT NULL
+        password VARCHAR(255) NOT NULL
     )
     """)
 
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS tblEconomicData (
-        data_id INTEGER PRIMARY KEY,
-        user_id INTEGER NOT NULL,
-        year INTEGER NOT NULL,
-        gdp FLOAT NOT NULL,
-        inflation_rate FLOAT NOT NULL,
-        unemployment_rate FLOAT NOT NULL,
-        balance_of_payment FLOAT NOT NULL,
-        budget FLOAT NOT NULL,
-        FOREIGN KEY (user_id) REFERENCES tblUserData(user_id)
-    )
-    """)
 
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS tblUserInteraction (
-        interaction_id INTEGER PRIMARY KEY,
-        user_id INTEGER NOT NULL,
-        timestamp INTEGER NOT NULL,
-        interaction_description VARCHAR(65535) NOT NULL,
-        policy_applied VARCHAR(255) DEFAULT NULL,
-        event_triggered VARCHAR(255) DEFAULT NULL,
-        FOREIGN KEY (user_id) REFERENCES tblUserData(user_id)
-    )
-    """)
 
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS tblSimulationState (
@@ -82,6 +56,10 @@ def load_simulation_state(self, user_id):
         return state
     return None
 
+def get_user_id(username):
+    cursor.execute("""
+        SELECT user_id FROM tblUserData WHERE username = ?
+    """, (username,))
+    result = cursor.fetchone()
+    return result[0] if result else None
 
-
-setup_database()

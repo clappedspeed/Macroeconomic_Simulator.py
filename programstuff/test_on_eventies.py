@@ -1,4 +1,4 @@
-# This was just a test file used for documentation
+
 import random
 
 class Outcome:
