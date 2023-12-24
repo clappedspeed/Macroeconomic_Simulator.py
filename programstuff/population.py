@@ -1,3 +1,6 @@
+# I originally had a wider scope for this project
+# This is now redundant as i simplified my project to omit this
+
 import numpy as np
 import time
 
