@@ -1,6 +1,7 @@
 import random
 
 class Outcome:
+    # this is the class for outcomes (single effect)
     def __init__(self, effect_type, description, magnitude, duration):
         self.effect_type = effect_type
         self.description = description
@@ -11,6 +12,7 @@ class Outcome:
         return f"Outcome: {self.description} ({self.effect_type}), Magnitude: {self.magnitude}, Duration: {self.duration} days"
 
 class Event:
+    # This is the class for an event (group of outcomes and their probability/magnitude)
     def __init__(self, name, description, outcomes, impact, probability):
         self.name = name
         self.description = description
@@ -28,7 +30,7 @@ class Event:
     def should_occur(self):
         return random.random() < self.probability
 
-# Data of all events
+# Data of all events stored in a list of dictionaries
 events_data = [
     {
         "name": "Global Pandemic",
@@ -208,10 +210,11 @@ events_data = [
     },
 ]
 
+# Making the events_data list into an event objecy
 events = [Event(event["name"], event["description"], [Outcome(**outcome) for outcome in event["outcomes"]],
                 event["impact"], event["probability"]) for event in events_data]
 
-
+# This is a placeholder class for testing purposes
 class EconomicIndicator:
     def __init__(self, gdp, inflation, unemployment, balance_of_payment, budget):
         self.gdp = gdp
@@ -237,16 +240,14 @@ class EconomicIndicator:
         return f"GDP: {self.gdp}, Inflation: {self.inflation}%, Unemployment: {self.unemployment}%, " \
                f"Balance of Payment: {self.balance_of_payment}, Budget: {self.budget}"
 
-# Example usage
+# Test 
 economic_indicator = EconomicIndicator(1000, 2, 5, 500, 300)
 print("Initial Economic Indicators:")
 print(economic_indicator)
 
-# (Previous code...)
 
 
-
-# Test all events
+# Test all events on command line (for testing)
 for event in events:
     if event.should_occur():
         print(f"\nApplying Event: {event.name}")
