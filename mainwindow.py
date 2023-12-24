@@ -425,16 +425,11 @@ class EconomicSimulatorGraphs:
         saved_state = load_simulation_state(self, self.user_id)
         if saved_state:
             # Load the simulation state
-            self.set_simulation_state(saved_state)
+            self.set_simulation_state(saved_state) # function from database.py
         else:
             messagebox.showinfo("No Saved Simulation", "No saved simulation found. Starting a new simulation.",
                                 parent=self.root)
-            self.start_new_simulation()
-
-    def start_new_simulation(self):
-        # Initialize a new simulation state
-        self.initialize_simulation()
-
+            self.initialize_simulation()
 
     def set_simulation_state(self, state):
         # Set the simulation state based on the loaded data
@@ -473,7 +468,7 @@ class EconomicSimulatorGraphs:
 
 def main():
     root = tk.Tk()
-    user_id = 12345
+    user_id = 12345 # Placeholder for now
     app = EconomicSimulatorGraphs(root, user_id)
     root.mainloop()
 
