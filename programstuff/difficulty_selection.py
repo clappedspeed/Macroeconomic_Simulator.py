@@ -1,4 +1,4 @@
-
+# This is a part a have not really gotten to due to time constraints 
 
 class DifficultySelection():
     def __init__(self, root):
