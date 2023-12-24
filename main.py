@@ -1,16 +1,22 @@
-# This is a sample Python script.
+# this is the file meant to be run to begin program
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import tkinter as tk
+from loginpage import Login
+from mainwindow import EconomicSimulatorGraphs
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+def main():
+    root = tk.Tk()
+    user_id = Login.validation  # Implement this function
+    app = None
+
+    if user_id:
+        app = EconomicSimulatorGraphs(root, user_id)
+    else:
+        app = Login(root)  # or Signup(root) based on the context
+
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()

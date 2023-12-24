@@ -1,0 +1,38 @@
+from IPython.display import display
+from graphviz import Digraph
+
+dot = Digraph()
+
+dot.node('A', 'Initialize Variables')
+dot.node('B', 'Setup GUI')
+dot.node('C', 'Load Database')
+dot.node('D', 'Configure Pygame')
+dot.node('E', 'Main Simulation Loop')
+dot.node('F', 'Update Indicators')
+dot.node('G', 'Check for Events')
+dot.node('H', 'Apply Policies')
+dot.node('I', 'Manage Cooldowns')
+dot.node('J', 'Handle User Interactions')
+dot.node('K', 'Event Handling')
+dot.node('L', 'Policy Activation')
+dot.node('M', 'Music Control')
+dot.node('N', 'Graph Switching')
+dot.node('O', 'Data Visualization')
+dot.node('P', 'Update Graphs')
+dot.node('Q', 'Database Operations')
+dot.node('R', 'Store Data for Historical Analysis')
+dot.node('S', 'Terminate Program')
+dot.node('T', 'Close Database')
+dot.node('U', 'Exit Pygame')
+dot.node('V', 'Exit GUI')
+
+dot.edges(['AB', 'BC', 'CD', 'DE', 'EF', 'EG', 'EH', 'EI', 'EJ', 'GK', 'KL', 'KM', 'KN', 'JO', 'OP', 'OQ', 'QR', 'ES', 'ST', 'SU', 'SV'])
+
+display(dot)
+# Save the graph to a file
+dot.render('graph', format='png', cleanup=True)
+
+# Open the file using the default viewer
+import webbrowser
+webbrowser.open('graph.png')
+
