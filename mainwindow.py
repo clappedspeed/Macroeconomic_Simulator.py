@@ -1,3 +1,5 @@
+# This is for the actual simulation of the program
+
 import random
 import sqlite3
 import time
