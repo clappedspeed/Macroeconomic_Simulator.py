@@ -1,3 +1,5 @@
+# This is a very old commanr line prototype of the simulation
+
 import random
 import numpy as np
 
