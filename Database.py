@@ -2,6 +2,7 @@
 import sqlite3
 import json
 import datetime
+from datetime import datetime
 
 # Database connection
 connect = sqlite3.connect("database.db")
@@ -56,6 +57,7 @@ def setup_database():
 
     connect.commit()
 
+# Function to save simulation when called
 def save_simulation_state(user_id, simulation_data):
     serialized_state = json.dumps(simulation_data)
     timestamp = int(datetime.now().timestamp())
@@ -65,9 +67,7 @@ def save_simulation_state(user_id, simulation_data):
     """, (user_id, serialized_state, timestamp))
     connect.commit()
 
-
-from datetime import datetime
-
+# Function to load the data from a given user
 def load_simulation_state(self, user_id):
     cursor.execute("""
         SELECT saved_state FROM tblSimulationState
