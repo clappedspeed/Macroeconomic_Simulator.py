@@ -1,4 +1,4 @@
-# simulation_database.py
+# The database that stores data and stuff
 import sqlite3
 import json
 import datetime
