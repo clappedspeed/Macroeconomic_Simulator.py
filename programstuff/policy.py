@@ -1,4 +1,9 @@
+# This is the policy file
+# This is for the policy class and policy list
+
+
 class Policy:
+    # Only a string method as the actual methods would be in main simulation class
     def __init__(self, **kwargs):
         self.name = kwargs.get("name", "")
         self.description = kwargs.get("description", "")
@@ -9,7 +14,7 @@ class Policy:
         return f"Policy: {self.name}\nDescription: {self.description}\nCost: ${self.cost} million\nImpact: {self.outcomes}"
 
 
-
+# List of Dictionaries containing policies
 policy_list = [
     {
         "name": "Tax Reform",
@@ -221,7 +226,7 @@ policy_list = [
     {
         "name": "Innovation Grants",
         "description": "Provide grants for innovative research and development",
-        "cost": 1200,  # in millions
+        "cost": 1200,  
         "outcomes": [
             {"effect_type": "GDP", "description": "Stimulate innovation and technology", "magnitude": 0.03, "duration": 12},
             {"effect_type": "Unemployment", "description": "Potential job creation in innovative sectors", "magnitude": -0.02, "duration": 8},
@@ -230,7 +235,7 @@ policy_list = [
     {
         "name": "Economic Diversification",
         "description": "Diversify the economy to reduce dependence on specific sectors",
-        "cost": 1000,  # in millions
+        "cost": 1000,  
         "outcomes": [
             {"effect_type": "GDP", "description": "Promote resilience against economic shocks", "magnitude": 0.02, "duration": 10},
             {"effect_type": "Unemployment", "description": "Potential job creation in emerging sectors", "magnitude": -0.01, "duration": 8},
@@ -239,7 +244,7 @@ policy_list = [
     {
         "name": "Public Sector Job Cuts",
         "description": "Implement job cuts in the public sector to reduce expenses",
-        "cost": -600,  # Negative cost indicates a budget reduction
+        "cost": -600, 
         "outcomes": [
             {"effect_type": "Budget", "description": "Savings from public sector payroll", "magnitude": -0.08,
              "duration": 10},
@@ -250,7 +255,7 @@ policy_list = [
     {
         "name": "Welfare Program Reduction",
         "description": "Reduce funding for social welfare programs",
-        "cost": -900,  # Negative cost indicates a budget reduction
+        "cost": -900,  
         "outcomes": [
             {"effect_type": "Budget", "description": "Savings from welfare program cuts", "magnitude": -0.12,
              "duration": 12},
@@ -261,7 +266,7 @@ policy_list = [
     {
         "name": "Infrastructure Spending Cutback",
         "description": "Reduce spending on infrastructure projects",
-        "cost": -1100,  # Negative cost indicates a budget reduction
+        "cost": -1100,  
         "outcomes": [
             {"effect_type": "Budget", "description": "Cutback in infrastructure spending", "magnitude": -0.15,
              "duration": 15},
@@ -272,7 +277,7 @@ policy_list = [
     {
         "name": "Education Budget Reduction",
         "description": "Cutback on education sector budget",
-        "cost": -800,  # Negative cost indicates a budget reduction
+        "cost": -800,  
         "outcomes": [
             {"effect_type": "Budget", "description": "Reduction in education spending", "magnitude": -0.1,
              "duration": 12},
@@ -283,7 +288,7 @@ policy_list = [
     {
         "name": "Healthcare Funding Cuts",
         "description": "Reduce funding for healthcare services",
-        "cost": -1000,  # Negative cost indicates a budget reduction
+        "cost": -1000,  
         "outcomes": [
             {"effect_type": "Budget", "description": "Cuts in healthcare funding", "magnitude": -0.12, "duration": 12},
             {"effect_type": "GDP", "description": "Potential impact on health sector employment", "magnitude": -0.02,
@@ -293,7 +298,7 @@ policy_list = [
     {
         "name": "Environmental Protection Budget Cut",
         "description": "Reduce budget for environmental protection initiatives",
-        "cost": -700,  # Negative cost indicates a budget reduction
+        "cost": -700,  
         "outcomes": [
             {"effect_type": "Budget", "description": "Reduction in environmental protection spending",
              "magnitude": -0.1, "duration": 10},
@@ -304,7 +309,7 @@ policy_list = [
     {
         "name": "Subsidy Program Reduction",
         "description": "Cutback on subsidies for various industries",
-        "cost": -1200,  # Negative cost indicates a budget reduction
+        "cost": -1200,  
         "outcomes": [
             {"effect_type": "Budget", "description": "Reduction in subsidy programs", "magnitude": -0.15,
              "duration": 12},
@@ -315,7 +320,7 @@ policy_list = [
     {
         "name": "Tax Incentive Removal",
         "description": "Remove tax incentives for businesses",
-        "cost": -600,  # Negative cost indicates a budget reduction
+        "cost": -600,  
         "outcomes": [
             {"effect_type": "Budget", "description": "Reduction in tax incentives", "magnitude": -0.08, "duration": 8},
             {"effect_type": "GDP", "description": "Potential decrease in business investments", "magnitude": -0.01,
@@ -325,7 +330,7 @@ policy_list = [
     {
         "name": "Defense Budget Cut",
         "description": "Reduce defense budget spending",
-        "cost": -1500,  # Negative cost indicates a budget reduction
+        "cost": -1500,  
         "outcomes": [
             {"effect_type": "Budget", "description": "Cutback in defense spending", "magnitude": -0.2, "duration": 15},
             {"effect_type": "Unemployment", "description": "Potential job cuts in defense sector", "magnitude": 0.02,
@@ -335,7 +340,7 @@ policy_list = [
     {
         "name": "Pension Reform",
         "description": "Implement reforms to reduce pension spending",
-        "cost": -1000,  # Negative cost indicates a budget reduction
+        "cost": -1000,  
         "outcomes": [
             {"effect_type": "Budget", "description": "Reduction in pension spending", "magnitude": -0.12,
              "duration": 12},
