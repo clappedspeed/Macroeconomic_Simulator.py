@@ -1,3 +1,4 @@
+
 # Login and Sign up page
 
 from tkinter import *
@@ -38,8 +39,8 @@ class Login:
 
         Sign_up = Button(Frame_login,command=Signup, text="Sign Up:", font=("Arial", 18, "bold"), fg="#1d1d1d", bg="white").place(x=98, y=500)
         submit = Button(Frame_login,command=self.validation, text="login:", font=("Arial", 20, "bold"), fg="#1d1d1d", bg="white").place(x=98,y=420)
-
-    def show_transition_page(self, user_id):
+       
+    def show_transition_page(self, user_id): # Sadly redundant right now
         self.current_user_id = user_id
         # Clear the current frame
         for widget in self.root.winfo_children():
@@ -84,16 +85,9 @@ class Login:
             else:
                 messagebox.showerror("Error", "User not found", parent=self.root)
                 return None
-
-    # Add methods for loading and starting a new simulation
-    def load_simulation(self):
-        pass
-
-    def start_new_simulation(self):
-        # Logic to start a new simulation
-        pass
-
+                
     def load_main_menu(self, user_id):
+        # This method opens the simulation when called
         from mainwindow import EconomicSimulatorGraphs
         self.main_menu = EconomicSimulatorGraphs(self.root, user_id)
 
