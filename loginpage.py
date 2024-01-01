@@ -34,7 +34,7 @@ class Login:
         self.username = Entry(Frame_login, font=("Goudy old style", 18), bg="#e7e6e6")
         self.username.place(x=90, y=250, width=328, height=35)
         password_label = Label(Frame_login, text="Password:", font=("Arial", 18, "bold"), fg="#1d1d1d", bg="white").place(x=98, y=300)
-        self.password = Entry(Frame_login, font=("Goudy old style", 18), bg="#e7e6e6")
+        self.password = Entry(Frame_login, font=("Goudy old style", 18), bg="#e7e6e6", show="*")
         self.password.place(x=90, y=370, width=328, height=35)
 
         Sign_up = Button(Frame_login,command=Signup, text="Sign Up:", font=("Arial", 18, "bold"), fg="#1d1d1d", bg="white").place(x=98, y=500)
@@ -111,7 +111,7 @@ class Signup(Login):
 
         password_label = Label(Frame_login, text="Password:", font=("Arial", 18, "bold"), fg="#1d1d1d",
                                bg="white").place(x=98, y=250)
-        self.password = Entry(Frame_login, font=("Goudy old style", 18), bg="#e7e6e6")
+        self.password = Entry(Frame_login, font=("Goudy old style", 18), bg="#e7e6e6", show="*")
         self.password.place(x=90, y=300, width=328, height=30)
 
         password_confirm_label = Label(Frame_login, text="Confirm Password:", font=("Arial", 18, "bold"), fg="#1d1d1d",
@@ -136,12 +136,22 @@ class Signup(Login):
             if password != password_confirm:
                 messagebox.showerror("Error", "Passwords do not match", parent=self.root)
             elif len(str(password)) < 8:
-                messagebox.showerror("Error", "Password needs to be atleast 8 characters", parent=self.root)
+                messagebox.showerror("Error", "Password needs to be at least 8 characters", parent=self.root)
             else:
-                new_username, new_password = username, hashlib.sha256(password.encode()).hexdigest()
-                cursor.execute("INSERT INTO tblUserData (username, password) values (?, ?)", (new_username, new_password))
-                messagebox.showinfo("Successful")
-                connect.commit()
+                # Check if the username already exists
+                cursor.execute("SELECT * FROM tblUserData WHERE username=?", (username,))
+                existing_user = cursor.fetchone()
+
+                if existing_user:
+                    messagebox.showerror("Error", "Username already exists. Please choose a different one.",
+                                         parent=self.root)
+                else:
+                    # Insert the new user
+                    new_username, new_password = username, hashlib.sha256(password.encode()).hexdigest()
+                    cursor.execute("INSERT INTO tblUserData (username, password) VALUES (?, ?)",
+                                   (new_username, new_password))
+                    connect.commit()
+                    messagebox.showinfo("Successful", "Account created successfully", parent=self.root)
 
 
 

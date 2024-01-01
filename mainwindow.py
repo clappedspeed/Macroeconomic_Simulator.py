@@ -1,5 +1,4 @@
 # This is for the actual simulation of the program
-
 import random
 import sqlite3
 import time
@@ -32,6 +31,12 @@ class EconomicSimulatorGraphs:
         self.root.title("Economy Simulator")
         self.root.geometry("1280x720")
         self.user_id = user_id  # Store the user ID
+
+        # background image and loading it
+        self.bg = ImageTk.PhotoImage(file="images/libertas_map.png")
+        # placing image
+        self.bg_image = tk.Label(self.root, image=self.bg)
+        self.bg_image.place(x=0, y=0, relwidth=1, relheight=1)
 
         self.database_connection = connect
         self.database_cursor = cursor
@@ -90,7 +95,6 @@ class EconomicSimulatorGraphs:
 
         # Create a policy tab
         self.policy_tab = ttk.Frame(root)
-        self.policy_tab.pack(side="top", fill="both", expand=True)
         self.add_policy_tab()
 
         # Create a button to toggle between graphs
@@ -318,19 +322,19 @@ class EconomicSimulatorGraphs:
                     print(f"new GDP: {self.gdp}")
                 elif outcome.effect_type == "Inflation":
                     print(f"old inflation: {self.inflation}")
-                    self.inflation += outcome.magnitude
+                    self.inflation *= 2*(1 + outcome.magnitude)
                     print(f"new inflation: {self.inflation}")
                 elif outcome.effect_type == "Unemployment":
                     print(f"old unemployment: {self.unemployment}")
-                    self.unemployment += outcome.magnitude
+                    self.unemployment *= 1.5*(1 + outcome.magnitude)
                     print(f"new unemployment: {self.unemployment}")
                 elif outcome.effect_type == "Balance of Payment":
                     print(f"old balance of payment: {self.balance_of_payment}")
-                    self.balance_of_payment += outcome.magnitude
+                    self.balance_of_payment *= 1.25*(1 + outcome.magnitude)
                     print(f"new balance of payment: {self.balance_of_payment}")
                 elif outcome.effect_type == "Budget":
                     print(f"old budget: {self.budget}")
-                    self.budget += outcome.magnitude
+                    self.budget *= (1 + outcome.magnitude)
                     print(f"new budget: {self.balance_of_payment}")
 
                 self.show_event(event.name, event.description, self.current_date)
@@ -340,11 +344,11 @@ class EconomicSimulatorGraphs:
 
 
     def add_policy_tab(self):
-        # Create and set up the Combobox for policy selection
+        # Combobox for policy selection
         self.policy_combobox = ttk.Combobox(self.policy_tab, values=[policy.name for policy in policy_instances])
         self.policy_combobox.pack(pady=20)
 
-        # Create a button to apply the selected policy
+        # button to apply the selected policy
         apply_policy_button = ttk.Button(self.policy_tab, text="Apply Policy", command=self.apply_selected_policy)
         apply_policy_button.pack(pady=10)
 
@@ -366,13 +370,13 @@ class EconomicSimulatorGraphs:
 
     def apply_policy(self, policy):
         # Check if the simulator has enough budget to implement the policy
-        if policy.cost > self.budget:
+        if (policy.cost / 5) > self.budget:
             print(f"Not enough budget to implement {policy.name}. cost = {policy.cost}\nbudget = {self.budget}")
             return
 
 
         # Deduct the cost from the budget
-        self.budget -= policy.cost
+        self.budget -= (policy.cost / 5)
 
         # Update economic indicators based on policy outcomes
         for outcome in policy.outcomes:
@@ -385,15 +389,15 @@ class EconomicSimulatorGraphs:
                     print(f"new GDP: {self.gdp}")
                 elif effect_type == "Inflation":
                     print(f"old inflation: {self.inflation}")
-                    self.inflation += outcome["magnitude"]
+                    self.inflation *= 1.9*(1 + outcome["magnitude"])
                     print(f"new inflation: {self.inflation}")
                 elif effect_type == "Unemployment":
                     print(f"old unemployment: {self.unemployment}")
-                    self.unemployment += outcome["magnitude"]
+                    self.unemployment *= 1.5*(1 + outcome["magnitude"])
                     print(f"new unemployment: {self.unemployment}")
                 elif effect_type == "Balance of Payment":
                     print(f"old balance of payment: {self.balance_of_payment}")
-                    self.balance_of_payment *= (1 + outcome["magnitude"])
+                    self.balance_of_payment *= 1.25*(1 + outcome["magnitude"])
                     print(f"new balance of payment: {self.balance_of_payment}")
                 elif effect_type == "Budget":
                     print(f"old budget: {self.budget}")
@@ -418,7 +422,6 @@ class EconomicSimulatorGraphs:
                 'unemployment': self.unemployment,
                 'balance_of_payment': self.balance_of_payment,
                 'budget': self.budget,
-                # Add any other relevant simulation state data
             }
             serialized_state = json.dumps(simulation_state)
 
@@ -468,7 +471,7 @@ class EconomicSimulatorGraphs:
         self.inflation = 0.03
         self.unemployment = 5.0
         self.balance_of_payment = 0
-        self.budget = 10000.0
+        self.budget = 300.0
         self.current_date = datetime(2023, 1, 1)
         self.dates = [self.current_date]
         self.gdp_data = [self.gdp]
@@ -483,7 +486,7 @@ class EconomicSimulatorGraphs:
 
 def main():
     root = tk.Tk()
-    user_id = 12345
+    user_id = 9887
     app = EconomicSimulatorGraphs(root, user_id)
     root.mainloop()
 if __name__ == "__main__":
